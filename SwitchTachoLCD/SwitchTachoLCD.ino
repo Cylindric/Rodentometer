@@ -1,43 +1,56 @@
 #include <SoftwareSerial.h>
+#include <SerialGLCD.h>
 
-const int LCD_PIN = 3;   // Pin connected to LCD
-const int REED_PIN = 4;   // Pin connected to reed
-const int REVS_TO_MM = 540; // Circumference of wheel (mm)
-const float REVS_TO_M = 0.54; // Circumference of wheel (m)
-const int SCREEN_DELAY = 1000; // Max screen update (ms)
-const int SCREEN_REDRAW = 5000; // Screen redraw period (ms)
-const int DEBOUNCE = 100; // Debounce filter time (ms)
-const int HEIGHT = 64; // Height of LCD (pixels)
-const int WIDTH = 128; // Width of LCD (pixels)
+static const int MODE = 0; // Operation mode: 0=test, 1=sensor
+static const int LCD_PIN = 3;   // Pin connected to LCD
+static const int REED_PIN = 4;   // Pin connected to reed
+static const int REVS_TO_MM = 540; // Circumference of wheel (mm)
+static const float REVS_TO_M = 0.54; // Circumference of wheel (m)
+static const int SCREEN_DELAY = 200; // Max screen update (ms)
+static const int SCREEN_REDRAW = 5000; // Screen redraw period (ms)
+static const int DEBOUNCE = 100; // Debounce filter time (ms)
+static const int HEIGHT = 64; // Height of LCD (pixels)
+static const int WIDTH = 128; // Width of LCD (pixels)
+static const int TXT_ROW_0 = 0;
+static const int TXT_ROW_1 = 9;
 
 int revolutions = 0;
 int reedState = HIGH;
 int reedPreviousState = LOW;
+bool displayNeedsReset = true;
 
 long time = 0;
 long lastScreenUpdate = 0;
-long lastScreenRedraw = 0;
+long startTime = 0;
+long nextGraphPointTime = 0;
+int graphPointPtr = 0;
+int graphDelta = 0;
+int graphLastValue = 0;
 
-SoftwareSerial glcd(0, LCD_PIN);
+SerialGLCD glcd(LCD_PIN, 128, 64);
 
 void setup() {
   pinMode(REED_PIN, INPUT);
   Serial.begin(9600);
   Serial.println("Hello");
-  glcd.begin(115200);
-  clearLCD();
+  glcd.begin();
+  glcd.clear();
 }
 
-
 void loop() {
-  //TestLoop();
-  MainLoop();
+  if (MODE == 0) {
+    TestLoop();
+  } else {
+    MainLoop();
+  }
 }
 
 void TestLoop() {
-  for (int j = 0; j < 1024; j++) {
-    updateDisplay(j);
-    delay(10);
+  int i = 0;
+  while (true) {
+    updateDisplay(i);
+    delay(200);
+    i+=random(0, 6);
   }
 }
 
@@ -60,71 +73,43 @@ void MainLoop() {
 }
 
 
+void setupDisplay() {
+  glcd.clear();
+  glcd.gotoXY(0, TXT_ROW_0);
+  glcd.drawAscii("Revolutions: ");
+  glcd.gotoXY(0, TXT_ROW_1);
+  glcd.drawAscii("Meters:      ");
+}
+
+
 void updateDisplay(int revs) {
   
-  if (millis() > (lastScreenRedraw + SCREEN_REDRAW)) {
-    clearLCD();
-    lastScreenRedraw = millis();
+  if (displayNeedsReset) {
+    setupDisplay();
+    displayNeedsReset = false;
+  }
+  
+  if (startTime == 0) { 
+    startTime = millis();
+    nextGraphPointTime = startTime + 10000;
+    graphPointPtr = 0;
+  }
+  
+  if (millis() >= nextGraphPointTime) {
+    graphDelta = revs - graphLastValue;
+    glcd.drawLine(graphPointPtr, 64, graphPointPtr, 64-graphDelta);
+    graphPointPtr++;
+    nextGraphPointTime = millis() + 10000;
+    graphLastValue = revs;
   }
   
   if (millis() > (lastScreenUpdate + SCREEN_DELAY)) {
-    setXY(0, 8);
-    glcd.print(revs);
-    glcd.print(" revolutions    ");
+    glcd.gotoXY(80, TXT_ROW_0);
+    glcd.drawAscii(revs);
     
-    setXY(0, 20);
-    glcd.print(REVS_TO_M * revs);
-    glcd.print("m     ");
+    glcd.gotoXY(80, TXT_ROW_1);
+    glcd.drawAscii(REVS_TO_M * revs);
     lastScreenUpdate = millis();
   }
 }
 
-
-/* LCD Functions */
-void setXY(byte x, byte y) {
-  setX(x);
-  setY(y);
-}
-
-
-void setX(byte x) {
-  glcd.write(0x7C); // Command
-  glcd.write(0x18); // Set X
-  glcd.write(x); // X-coord
-}
-
-
-void setY(byte y) {
-  glcd.write(0x7C); // Command
-  glcd.write(0x19); // Set Y
-  glcd.write(y); // Y-coord
-}
-
-
-void drawBox(byte x1, byte y1, byte x2, byte y2) {
-  glcd.write(0x7C); // Command
-  glcd.write(0x0F); // Box
-  glcd.write(x1); // X-coord 1
-  glcd.write(y1); // Y-coord 1
-  glcd.write(x2); // X-coord 2
-  glcd.write(y2); // Y-coord 2
-  glcd.write(0x01); // Set
-}
-
-
-void clearLCD() {
-  glcd.write(0x7C); // Command
-  glcd.write((byte)0); // Clear
-}
-
-
-void demo() {
-  glcd.write(0x7C); // Command
-  glcd.write(0x04); // Demo
-}
-
-
-void reverse() {
-  glcd.write(0x7C); // Command
-  glcd.write(0x12); // Demo
-}
