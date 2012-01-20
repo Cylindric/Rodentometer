@@ -2,9 +2,9 @@
 #include <SerialGLCD.h>
 #include "gui.h"
 
-static const int MODE = 0; // Operation mode: 0=test, 1=sensor
+static const int MODE = 1; // Operation mode: 0=test, 1=sensor
 static const int LCD_PIN = 3;   // Pin connected to LCD
-static const int REED_PIN = 4;   // Pin connected to reed
+static const int REED_PIN = 9;   // Pin connected to reed
 static const int DEBOUNCE = 100; // Debounce filter time (ms)
 
 GUI gui(LCD_PIN);
@@ -36,10 +36,9 @@ void MainLoop() {
   
   if (reading == HIGH && reedPreviousState == LOW) {
     revolutions++;
+    gui.update(revolutions);
     delay(DEBOUNCE);
   }
 
-  gui.update(revolutions);
   reedPreviousState = reading;
-  delay(1000);
 }
