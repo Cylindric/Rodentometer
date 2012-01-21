@@ -3,8 +3,8 @@
 #include <SoftwareSerial.h>
 #include "gui.h"
 
-GUI::GUI(uint8_t transmitPin) : _glcd(SerialGLCD(transmitPin))
-{  
+GUI::GUI(uint8_t receivePin, uint8_t transmitPin) : _glcd(SerialGLCD(receivePin, transmitPin))
+{
 }
 
 void GUI::begin()
@@ -14,6 +14,8 @@ void GUI::begin()
   this->_glcd.setDutyCycle(30);
   this->splash();
   this->setupScreen();
+  this->_topButtonState = 0;
+  this->_bottomButtonState = 0;
 }
 
 void GUI::setupScreen()
@@ -26,6 +28,16 @@ void GUI::setupScreen()
   this->_glcd.drawAscii(2, 11, "Meters:");
   this->_glcd.drawAscii(2, 20, "RPM:");
   this->_glcd.drawAscii(2, 29, "kmH:");
+  
+  // buttons
+  Serial.print(this->BUTTON_X);
+  Serial.print(", ");
+  Serial.println(this->TOP_BUTTON_Y);
+  
+  this->_glcd.drawCircle(this->BUTTON_X, this->TOP_BUTTON_Y, 2, 1);
+  this->_glcd.drawCircle(this->BUTTON_X, this->BOTTOM_BUTTON_Y, 2, 1);
+  this->setButton(GUI::TOP_BUTTON, 0);
+  this->setButton(GUI::BOTTOM_BUTTON, 0);
 }
 
 void GUI::update(uint16_t revs)
@@ -57,11 +69,39 @@ void GUI::update(uint16_t revs)
   this->_glcd.drawAscii(col, 29, km_per_hour, 2);  
 }
 
+void GUI::setButton(uint8_t button, uint8_t state)
+{
+  bool stateChanged = false;
+  uint8_t x = this->BUTTON_X;
+  uint8_t y = 0;
+
+  switch (button)
+  {
+    case (GUI::TOP_BUTTON):
+      y = this->TOP_BUTTON_Y;
+      stateChanged = (this->_topButtonState != state);
+      this->_topButtonState = state;
+      break;
+
+    case GUI::BOTTOM_BUTTON:
+      y = this->BOTTOM_BUTTON_Y;
+      stateChanged = (this->_bottomButtonState != state);
+      this->_bottomButtonState = state;
+      break;
+  }
+
+  if (stateChanged)
+  {
+    this->_glcd.drawRectangle(x-1, y-1, x+1, y+1, state);
+    this->_glcd.drawPixel(x, y, state);
+  }
+}
+
 void GUI::splash()
 {
   delay(1000);
   this->_glcd.drawRectangle(0, 0, 127, 63);
-  this->_glcd.drawAscii(25, 20, "Rodentometer!     ");
+  this->_glcd.drawAscii(25, 20, "Rodentometer!");
   delay(2000);
   this->_glcd.drawFilledRectangle(1, 1, 126, 62, 0x00);
 }

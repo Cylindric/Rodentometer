@@ -13,13 +13,22 @@ class GUI
     uint16_t _revs[5];
     uint8_t _revPtr;
     uint16_t _delta;
+    uint8_t _topButtonState;
+    uint8_t _bottomButtonState;
+    static const uint8_t BUTTON_X = 123;
+    static const uint8_t TOP_BUTTON_Y = 15;
+    static const uint8_t BOTTOM_BUTTON_Y = 50;
+    
     void setupScreen();
 
   public:
-    GUI(uint8_t transmitPin);
+    static const uint8_t TOP_BUTTON = 0;
+    static const uint8_t BOTTOM_BUTTON = 1;
+    GUI(uint8_t receivePin, uint8_t transmitPin);
     void begin();
     void splash();
     void update(uint16_t revs);
+    void setButton(uint8_t button, uint8_t state);
 };
 
 #endif
