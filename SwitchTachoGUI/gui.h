@@ -27,6 +27,7 @@ class GUI
     GUI(uint8_t receivePin, uint8_t transmitPin);
     void begin();
     void splash();
+    void resetStatistics();
     void update(uint16_t revs);
     void setButton(uint8_t button, uint8_t state);
 };

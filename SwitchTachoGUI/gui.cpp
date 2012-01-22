@@ -9,10 +9,10 @@ GUI::GUI(uint8_t receivePin, uint8_t transmitPin) : _glcd(SerialGLCD(receivePin,
 
 void GUI::begin()
 {
-  this->_revPtr = 0;
   this->_glcd.begin();
   this->_glcd.setDutyCycle(30);
   this->splash();
+  this->resetStatistics();
   this->setupScreen();
   this->_topButtonState = 0;
   this->_bottomButtonState = 0;
@@ -67,6 +67,15 @@ void GUI::update(uint16_t revs)
   this->_glcd.drawAscii(col, 11, metres);
   this->_glcd.drawAscii(col, 20, rpm);
   this->_glcd.drawAscii(col, 29, km_per_hour, 2);  
+}
+
+void GUI::resetStatistics() {
+  this->_revPtr = 0;  
+  this->_lastRevLog = 0;
+  for (uint8_t i = 0; i < 5; i++) {
+    this->_revs[i] = 0;
+  }
+  update(0);
 }
 
 void GUI::setButton(uint8_t button, uint8_t state)

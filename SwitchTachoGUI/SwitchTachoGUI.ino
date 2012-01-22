@@ -4,7 +4,7 @@
 #include "gui.h"
 
 #define DEBUG
-#define TESTING
+//#define TESTING
 
 #ifdef DEBUG
   #define DEBUG_PRINT(x) Serial.print(x)
@@ -65,12 +65,17 @@ void MainLoop() {
   int reading = digitalRead(REED_PIN);
 #endif
 
+  if (TopButton.read()) {
+    revolutions = 0;
+    Gui.resetStatistics();
+  }
+
   Gui.setButton(GUI::TOP_BUTTON, TopButton.read());
   Gui.setButton(GUI::BOTTOM_BUTTON, BottomButton.read());
 
   if (reading == HIGH && reedPreviousState == LOW) {
     revolutions++;
-    Gui.update(revolutions);
+     Gui.update(revolutions);
     delay(DEBOUNCE);
   }
 
