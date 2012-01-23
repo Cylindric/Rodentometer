@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
+using System.IO.Ports;
 
 namespace Rodentometer
 {
@@ -15,7 +16,9 @@ namespace Rodentometer
         static void Main(string[] args)
         {
             PachubeClient pachube = new PachubeClient(API_KEY, FEED);
-            pachube.Send(DATASTREAM, 15);
+
+            SerialPort port = new SerialPort();
+
         }
 
     }

@@ -15,6 +15,13 @@
 #endif
 
 static const int MODE = 1; // Operation mode: 0=test, 1=sensor
+
+static const int ETHERNET_SCK_PIN = 13; // reserved for Ethernet shield
+static const int ETHERNET_MISO_PIN = 12; // reserved for Ethernet shield
+static const int ETHERNET_MOSI_PIN = 11; // reserved for Ethernet shield
+static const int ETHERNET_SS = 10; // reserved for Ethernet shield
+static const int SDCARD_SS = 4; // reserved for Ethernet shield
+
 static const int LCD_RX_PIN = 2; // Pin connected to LCD
 static const int LCD_TX_PIN = 3; // Pin connected to LCD
 static const int TOP_BUTTON_PIN = 7; // Pin connected to the top button
