@@ -6,35 +6,26 @@ Pachube::Pachube(char* apiKey)
   this->_apiKey = apiKey;
 }
 
-void Pachube::sendData(char* feed, char* datastream, int data) {
-  Serial.print("Sending data to Pachube: ");
-  Serial.println(data);
+void Pachube::sendDataMany(char* feed, String data) {
+  Serial.print("Sending data to Pachube");
 
   // if there's a successful connection:
   if (this->_client.connect("api.pachube.com", 80)) {
     Serial.print("sending...");
+
+    // send the HTTP PUT request.
+    String request = String("PUT /v2/feeds/");
+    request += feed;
+    request += ".csv HTTP/1.1\nHost: api.pachube.com\nX-PachubeApiKey: ";
+    request += this->_apiKey;
+    request += "\nContent-Length: ";
+    request += data.length();
+    request += "Content-Type: text/csv\nConnection: close\n";
+    request += data;
+
+    Serial.println(request);
+    this->_client.println(request);
     
-    // calculate the length of the sensor reading in bytes:
-    int dataLength = this->getLength(data);
-
-    // send the HTTP PUT request. 
-    this->_client.print("PUT /v2/feeds/");
-    this->_client.print(feed);
-    this->_client.print("/datastreams/");
-    this->_client.print(datastream);
-    this->_client.print(".csv HTTP/1.1\n");
-    this->_client.print("Host: api.pachube.com\n");
-    this->_client.print("X-PachubeApiKey: ");
-    this->_client.print(this->_apiKey);
-    this->_client.print("\n");
-    this->_client.print("Content-Length: ");
-    this->_client.println(dataLength, DEC);
-    this->_client.print("Content-Type: text/csv\n");
-    this->_client.println("Connection: close\n");
-
-    // here's the actual content of the PUT request:
-    this->_client.println(data, DEC);
-
     // note the time that the connection was made:
     this->_lastConnection = millis();
     
@@ -44,6 +35,14 @@ void Pachube::sendData(char* feed, char* datastream, int data) {
     // if you couldn't make a connection:
     Serial.println("connection failed");
   }
+}
+
+void Pachube::sendData(char* feed, char* datastream, int data) {
+  String dataString = datastream;
+  dataString += ",";
+  dataString += data;  
+  dataString += "\n";
+  this->sendDataMany(feed, dataString);
 }
 
 bool Pachube::connected() {

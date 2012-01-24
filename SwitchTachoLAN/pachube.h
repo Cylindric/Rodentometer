@@ -16,6 +16,7 @@ class Pachube
   public:
     Pachube(char* apiKey);
     void sendData(char* feed, char* datastream, int data);
+    void sendDataMany(char* feed, String data);
     bool connected();
     void stop();
 };
