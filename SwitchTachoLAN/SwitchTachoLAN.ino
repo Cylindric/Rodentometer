@@ -1,14 +1,10 @@
+#include "pachube.h"
 #include <SPI.h>
-#include <Dhcp.h>
-#include <Dns.h>
 #include <Ethernet.h>
-#include <EthernetClient.h>
-#include <EthernetServer.h>
-#include <EthernetUdp.h>
-#include <util.h>
 
 #include <SoftwareSerial.h>
 #include <SerialGLCD.h>
+
 #include <Bounce.h>
 #include "gui.h"
 
@@ -40,15 +36,15 @@ static const int REED_PIN = 9; // Pin connected to reed
 static const int DEBOUNCE = 100; // Debounce filter time (ms)
 
 // Pachube
-static const char* PA_API_KEY = "vMZ2_PPD04LpatS9cohU0y_Exu5EwTXV-nTAyG5wx2fJJ81IcnlfJj0aLs2Q2xQeOqHTNjwiQuojQg49xAp2iA615kYR_rpkgQczOBldzpHYmt5PyDp643iHOMVc_VIKQ6JCsaaf1D-KSvBhp8Qg5Q";
-static const char* PA_FEED = "45482";
-static const char* PA_DATASTREAM = "test";
+char* paApiKey = "vMZ2_PPD04LpatS9cohU0y_Exu5EwTXV-nTAyG5wx2fJJ81IcnlfJj0aLs2Q2xQeOqHTNjwiQuojQg49xAp2iA615kYR_rpkgQczOBldzpHYmt5PyDp643iHOMVc_VIKQ6JCsaaf1D-KSvBhp8Qg5Q";
+char* paFeed = "45482";
+char* paDatastream = "test";
 long paLastConnection;
 long paPostingInterval = 60000;
 
 // initialise objects
-EthernetClient Network;
 GUI Gui(LCD_RX_PIN, LCD_TX_PIN);
+Pachube pachube(paApiKey);
 Bounce TopButton(TOP_BUTTON_PIN, 5);
 Bounce BottomButton(BOTTOM_BUTTON_PIN, 5);
 
@@ -62,21 +58,11 @@ void setup()
   DEBUG_PRINTLN("Hello");
   delay(500);
 
-  if (Ethernet.begin(ETHERNET_MAC) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
-    // no point in carrying on, so do nothing forevermore:
-    for(;;)
-      ;
-  }
-  // give the ethernet module time to boot up:
-  delay(1000);
-  // start the Ethernet connection:
-  if (Ethernet.begin(ETHERNET_MAC) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
-    // Configure manually:
+  // attempt a DHCP connection:
+  if (!Ethernet.begin(ETHERNET_MAC)) {
+    // if DHCP fails, start with a hard-coded address:
     Ethernet.begin(ETHERNET_MAC, ETHERNET_IP);
-  }
-  
+  }  
   Serial.print("IP Address: ");
   Serial.println(Ethernet.localIP());
   
@@ -108,86 +94,11 @@ void loop() {
     delay(DEBOUNCE);
   }
 
-  if (Network.connected() && paLastConnection) {
-    Serial.println("Disconnecting");
-    Network.stop();
-  }
-  
-  if (!Network.connected() && (millis() - paLastConnection > paPostingInterval)) {
-    sendData(revolutions);
+  pachube.stop();
+  if (!pachube.connected() && (millis() - paLastConnection > paPostingInterval)) {
+    pachube.sendData(paFeed, paDatastream, revolutions);
   }
   
   reedPreviousState = reading;
-}
-
-
-void sendData(int thisData) {
-  Serial.print("Sending data to Pachube: ");
-  Serial.println(thisData);
-
-  // if there's a successful connection:
-  if (Network.connect("api.pachube.com", 80)) {
-    Serial.print("sending...");
-    // send the HTTP PUT request. 
-    Network.print("PUT /v2/feeds/");
-    Network.print(PA_FEED);
-    Network.print("/datastreams/");
-    Network.print(PA_DATASTREAM);
-    Network.print(".csv HTTP/1.1\n");
-    Network.print("Host: api.pachube.com\n");
-    Network.print("X-PachubeApiKey: ");
-    Network.print(PA_API_KEY);
-    Network.print("\n");
-    Network.print("Content-Length: ");
-
-    // calculate the length of the sensor reading in bytes:
-    int thisLength = getLength(thisData);
-    Network.println(thisLength, DEC);
-
-    // last pieces of the HTTP PUT request:
-    Network.print("Content-Type: text/csv\n");
-    Network.println("Connection: close\n");
-
-    // here's the actual content of the PUT request:
-    Network.println(thisData, DEC);
-
-    // note the time that the connection was made:
-    paLastConnection = millis();
-    
-    if (Network.available()) {
-      Serial.println();
-      Serial.println("Response:");
-      while (Network.available()) {
-        Serial.print(Network.read());
-      }
-      Serial.println();
-    }
-    
-    Serial.println("sent");
-  } 
-  else {
-    // if you couldn't make a connection:
-    Serial.println("connection failed");
-  }
-}
-
-
-// This method calculates the number of digits in the
-// sensor reading.  Since each digit of the ASCII decimal
-// representation is a byte, the number of digits equals
-// the number of bytes:
-int getLength(int someValue) {
-  // there's at least one byte:
-  int digits = 1;
-  // continually divide the value by ten, 
-  // adding one to the digit count for each
-  // time you divide, until you're at 0:
-  int dividend = someValue /10;
-  while (dividend > 0) {
-    dividend = dividend /10;
-    digits++;
-  }
-  // return the number of digits:
-  return digits;
 }
 
