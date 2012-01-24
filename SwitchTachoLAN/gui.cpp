@@ -30,10 +30,6 @@ void GUI::setupScreen()
   this->_glcd.drawAscii(2, 29, "kmH:");
   
   // buttons
-  Serial.print(this->BUTTON_X);
-  Serial.print(", ");
-  Serial.println(this->TOP_BUTTON_Y);
-  
   this->_glcd.drawCircle(this->BUTTON_X, this->TOP_BUTTON_Y, 2, 1);
   this->_glcd.drawCircle(this->BUTTON_X, this->BOTTOM_BUTTON_Y, 2, 1);
   this->setButton(GUI::TOP_BUTTON, 0);

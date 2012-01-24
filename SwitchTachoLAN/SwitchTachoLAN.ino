@@ -13,7 +13,7 @@
 #include "gui.h"
 
 #define DEBUG
-//#define TESTING
+#define TESTING
 
 #ifdef DEBUG
   #define DEBUG_PRINT(x) Serial.print(x)
@@ -22,8 +22,6 @@
   #define DEBUG_PRINT(x)
   #define DEBUG_PRINTLN(x)
 #endif
-
-static const int MODE = 0; // Operation mode: 0=test, 1=sensor
 
 static const int ETHERNET_SCK_PIN = 13; // reserved for Ethernet shield
 static const int ETHERNET_MISO_PIN = 12; // reserved for Ethernet shield
@@ -46,7 +44,7 @@ static const char* PA_API_KEY = "vMZ2_PPD04LpatS9cohU0y_Exu5EwTXV-nTAyG5wx2fJJ81
 static const char* PA_FEED = "45482";
 static const char* PA_DATASTREAM = "test";
 long paLastConnection;
-long paPostingInterval = 15000;
+long paPostingInterval = 60000;
 
 // initialise objects
 EthernetClient Network;
@@ -78,28 +76,15 @@ void setup()
     // Configure manually:
     Ethernet.begin(ETHERNET_MAC, ETHERNET_IP);
   }
-
+  
+  Serial.print("IP Address: ");
+  Serial.println(Ethernet.localIP());
+  
   Gui.begin();
 }
 
 
 void loop() {
-  if (MODE == 0) {
-    TestLoop();
-  } else {
-    MainLoop();
-  }
-}
-
-
-void TestLoop() 
-{
-  Gui.update(revolutions);
-  revolutions = revolutions + random(0, 5);
-}
-
-
-void MainLoop() {
   TopButton.update();
   BottomButton.update();
 
@@ -123,8 +108,7 @@ void MainLoop() {
     delay(DEBOUNCE);
   }
 
-  if (!Network.connected() && paLastConnection) {
-    Serial.println();
+  if (Network.connected() && paLastConnection) {
     Serial.println("Disconnecting");
     Network.stop();
   }
@@ -138,19 +122,19 @@ void MainLoop() {
 
 
 void sendData(int thisData) {
-  Serial.print("Sending data to Pachube... ");
+  Serial.print("Sending data to Pachube: ");
   Serial.println(thisData);
 
   // if there's a successful connection:
   if (Network.connect("api.pachube.com", 80)) {
-    Serial.println("connecting...");
+    Serial.print("sending...");
     // send the HTTP PUT request. 
     Network.print("PUT /v2/feeds/");
     Network.print(PA_FEED);
     Network.print("/datastreams/");
     Network.print(PA_DATASTREAM);
     Network.print(".csv HTTP/1.1\n");
-    Network.print("Host: www.pachube.com\n");
+    Network.print("Host: api.pachube.com\n");
     Network.print("X-PachubeApiKey: ");
     Network.print(PA_API_KEY);
     Network.print("\n");
@@ -169,6 +153,17 @@ void sendData(int thisData) {
 
     // note the time that the connection was made:
     paLastConnection = millis();
+    
+    if (Network.available()) {
+      Serial.println();
+      Serial.println("Response:");
+      while (Network.available()) {
+        Serial.print(Network.read());
+      }
+      Serial.println();
+    }
+    
+    Serial.println("sent");
   } 
   else {
     // if you couldn't make a connection:
