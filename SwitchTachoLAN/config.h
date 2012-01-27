@@ -14,8 +14,8 @@ static const int ETHERNET_SS = 10; // reserved for Ethernet shield
 static const int SDCARD_SS = 4; // reserved for Ethernet shield
 
 // User interface
-static const int LCD_RX_PIN = 3; // Pin connected to LCD TX
-static const int LCD_TX_PIN = 2; // Pin connected to LCD RX
+static const int LCD_RX_PIN = 2; // Pin connected to LCD TX
+static const int LCD_TX_PIN = 3; // Pin connected to LCD RX
 static const int TOP_BUTTON_PIN = 7; // Pin connected to the top button
 static const int BOTTOM_BUTTON_PIN = 8; // Pin connected to the bottom button
 
@@ -42,7 +42,7 @@ static const int SENSOR_DEBOUNCE = 100; // Debounce filter time (ms)
 static const int BUTTON_DEBOUNCE = 5; // Debounce filter time (ms)
 
 #define DEBUG
-#define TESTING
+//#define TESTING
 
 #ifdef DEBUG
   #define DEBUG_PRINT(x) Serial.print(x)

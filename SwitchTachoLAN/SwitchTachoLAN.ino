@@ -68,6 +68,7 @@ void loop() {
   pachube.stop();
   if (!pachube.connected() && (millis() - paLastConnection > paPostingInterval)) {
     pachube.sendData(PA_FEED, PA_DATASTREAM, revolutions);
+    paLastConnection = millis();
   }
   
   reedPreviousState = reading;
