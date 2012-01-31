@@ -2986,18 +2986,17 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </classes>
 <parts>
 <part name="IC1" library="Rodentometer" deviceset="*317" device="T"/>
-<part name="R1" library="Rodentometer" deviceset="R-EU_" device="0204/7" value="220"/>
+<part name="R1" library="Rodentometer" deviceset="R-EU_" device="0204/7" value="220R"/>
 <part name="R2" library="Rodentometer" deviceset="R-EU_" device="0204/7" value="1k"/>
 <part name="SUPPLY1" library="Rodentometer" deviceset="GND" device=""/>
 <part name="ARDUINO_POWER" library="Rodentometer" deviceset="PINHD-1X6" device=""/>
 <part name="POWER" library="Rodentometer" deviceset="PINHD-1X2" device=""/>
-<part name="SUPPLY2" library="Rodentometer" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="Rodentometer" deviceset="GND" device=""/>
 <part name="SWITCHES" library="Rodentometer" deviceset="PINHD-1X3" device=""/>
 <part name="R3" library="Rodentometer" deviceset="R-EU_" device="0207/10" value="1k"/>
 <part name="R4" library="Rodentometer" deviceset="R-EU_" device="0204/7" value="1k"/>
 <part name="SUPPLY7" library="Rodentometer" deviceset="+5V" device=""/>
-<part name="R5" library="Rodentometer" deviceset="R-EU_" device="0204/7"/>
+<part name="R5" library="Rodentometer" deviceset="R-EU_" device="0204/7" value="100R"/>
 <part name="SUPPLY8" library="Rodentometer" deviceset="+5V" device=""/>
 <part name="LCD" library="Rodentometer" deviceset="PINHD-1X4" device=""/>
 <part name="SUPPLY9" library="Rodentometer" deviceset="VSS" device="" value="VIN"/>
@@ -3015,33 +3014,32 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <plain>
 </plain>
 <instances>
-<instance part="IC1" gate="A1" x="50.8" y="73.66"/>
-<instance part="R1" gate="G$1" x="63.5" y="68.58" rot="R270"/>
-<instance part="R2" gate="G$1" x="63.5" y="53.34" rot="R270"/>
-<instance part="SUPPLY1" gate="GND" x="63.5" y="43.18"/>
-<instance part="ARDUINO_POWER" gate="A" x="114.3" y="68.58"/>
-<instance part="POWER" gate="G$1" x="22.86" y="76.2" rot="R180"/>
-<instance part="SUPPLY2" gate="GND" x="33.02" y="66.04"/>
-<instance part="SUPPLY3" gate="GND" x="86.36" y="43.18"/>
-<instance part="SWITCHES" gate="A" x="114.3" y="12.7" smashed="yes" rot="MR180">
-<attribute name="NAME" x="102.87" y="4.445" size="1.778" layer="95" rot="MR180"/>
-<attribute name="VALUE" x="107.95" y="20.32" size="1.778" layer="96" rot="MR180"/>
+<instance part="IC1" gate="A1" x="101.6" y="-25.4" rot="MR0"/>
+<instance part="R1" gate="G$1" x="88.9" y="-30.48" rot="R270"/>
+<instance part="R2" gate="G$1" x="106.68" y="-45.72" rot="R270"/>
+<instance part="SUPPLY1" gate="GND" x="111.76" y="-58.42"/>
+<instance part="ARDUINO_POWER" gate="A" x="78.74" y="10.16" rot="R180"/>
+<instance part="POWER" gate="G$1" x="124.46" y="-22.86" rot="MR180"/>
+<instance part="SUPPLY3" gate="GND" x="106.68" y="0"/>
+<instance part="SWITCHES" gate="A" x="30.48" y="-38.1" smashed="yes" rot="MR180">
+<attribute name="NAME" x="24.13" y="-43.815" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="24.13" y="-30.48" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="R3" gate="G$1" x="86.36" y="10.16" rot="R180"/>
-<instance part="R4" gate="G$1" x="86.36" y="17.78" rot="R180"/>
-<instance part="SUPPLY7" gate="+5V" x="93.98" y="68.58" rot="R90"/>
-<instance part="R5" gate="G$1" x="99.06" y="58.42" rot="R90"/>
-<instance part="SUPPLY8" gate="+5V" x="101.6" y="25.4"/>
-<instance part="LCD" gate="A" x="22.86" y="43.18" rot="MR0"/>
-<instance part="SUPPLY9" gate="G$1" x="38.1" y="53.34" rot="R180"/>
-<instance part="SUPPLY10" gate="GND" x="38.1" y="40.64"/>
-<instance part="ARDUINO_DATA" gate="A" x="50.8" y="-38.1" rot="R270"/>
-<instance part="SUPPLY5" gate="GND" x="73.66" y="12.7"/>
-<instance part="RESET_SWITCH" gate="G$1" x="114.3" y="48.26"/>
-<instance part="SENSOR" gate="A" x="22.86" y="-2.54" rot="MR0"/>
-<instance part="SUPPLY4" gate="GND" x="40.64" y="-7.62" rot="MR0"/>
-<instance part="SUPPLY6" gate="+5V" x="40.64" y="5.08" rot="MR0"/>
-<instance part="R6" gate="G$1" x="40.64" y="-15.24"/>
+<instance part="R3" gate="G$1" x="7.62" y="-48.26" rot="R270"/>
+<instance part="R4" gate="G$1" x="-2.54" y="-48.26" rot="R270"/>
+<instance part="SUPPLY7" gate="+5V" x="106.68" y="17.78"/>
+<instance part="R5" gate="G$1" x="99.06" y="20.32" rot="R270"/>
+<instance part="SUPPLY8" gate="+5V" x="17.78" y="-30.48"/>
+<instance part="LCD" gate="A" x="30.48" y="-5.08" rot="MR180"/>
+<instance part="SUPPLY9" gate="G$1" x="12.7" y="-15.24" rot="R180"/>
+<instance part="SUPPLY10" gate="GND" x="5.08" y="-12.7"/>
+<instance part="ARDUINO_DATA" gate="A" x="-45.72" y="-22.86" rot="R180"/>
+<instance part="SUPPLY5" gate="GND" x="2.54" y="-63.5"/>
+<instance part="RESET_SWITCH" gate="G$1" x="124.46" y="7.62"/>
+<instance part="SENSOR" gate="A" x="30.48" y="25.4"/>
+<instance part="SUPPLY4" gate="GND" x="12.7" y="20.32" rot="MR0"/>
+<instance part="SUPPLY6" gate="+5V" x="12.7" y="33.02" rot="MR0"/>
+<instance part="R6" gate="G$1" x="5.08" y="27.94"/>
 </instances>
 <busses>
 </busses>
@@ -3050,84 +3048,86 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
 <pinref part="IC1" gate="A1" pin="VO"/>
-<wire x1="60.96" y1="76.2" x2="63.5" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="76.2" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="76.2" x2="111.76" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="-22.86" x2="88.9" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-22.86" x2="88.9" y2="-25.4" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-22.86" x2="88.9" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="2.54" x2="81.28" y2="2.54" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_POWER" gate="A" pin="1"/>
-<junction x="63.5" y="76.2"/>
-<label x="116.84" y="75.438" size="1.778" layer="95"/>
+<junction x="88.9" y="-22.86"/>
+<label x="76.2" y="3.302" size="1.778" layer="95" rot="R180"/>
 </segment>
 <segment>
 <pinref part="LCD" gate="A" pin="1"/>
-<wire x1="25.4" y1="48.26" x2="38.1" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="48.26" x2="38.1" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-10.16" x2="17.78" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="-10.16" x2="17.78" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="-17.78" x2="12.7" y2="-17.78" width="0.1524" layer="91"/>
 <pinref part="SUPPLY9" gate="G$1" pin="VSS"/>
-<label x="20.32" y="48.26" size="1.778" layer="95" rot="R180"/>
+<label x="33.02" y="-11.43" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
-<pinref part="POWER" gate="G$1" pin="1"/>
-<wire x1="25.4" y1="73.66" x2="33.02" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="73.66" x2="33.02" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="SUPPLY2" gate="GND" pin="GND"/>
-<label x="15.24" y="73.66" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <pinref part="SUPPLY1" gate="GND" pin="GND"/>
-<wire x1="63.5" y1="48.26" x2="63.5" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-50.8" x2="106.68" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-53.34" x2="111.76" y2="-53.34" width="0.1524" layer="91"/>
+<pinref part="POWER" gate="G$1" pin="1"/>
+<wire x1="121.92" y1="-25.4" x2="114.3" y2="-25.4" width="0.1524" layer="91"/>
+<label x="127" y="-25.4" size="1.778" layer="95"/>
+<wire x1="111.76" y1="-55.88" x2="111.76" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="-53.34" x2="114.3" y2="-53.34" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="-53.34" x2="114.3" y2="-25.4" width="0.1524" layer="91"/>
+<junction x="111.76" y="-53.34"/>
 </segment>
 <segment>
-<wire x1="86.36" y1="45.72" x2="86.36" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="48.26" x2="86.36" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="73.66" x2="104.14" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_POWER" gate="A" pin="2"/>
 <pinref part="SUPPLY3" gate="GND" pin="GND"/>
 <pinref part="ARDUINO_POWER" gate="A" pin="3"/>
-<wire x1="104.14" y1="73.66" x2="111.76" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="71.12" x2="104.14" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="104.14" y1="71.12" x2="104.14" y2="73.66" width="0.1524" layer="91"/>
-<junction x="104.14" y="73.66"/>
-<label x="116.84" y="72.898" size="1.778" layer="95"/>
-<label x="116.84" y="70.358" size="1.778" layer="95"/>
+<wire x1="106.68" y1="5.08" x2="81.28" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="7.62" x2="106.68" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="2.54" x2="106.68" y2="5.08" width="0.1524" layer="91"/>
+<junction x="106.68" y="7.62"/>
+<label x="76.2" y="5.842" size="1.778" layer="95" rot="R180"/>
+<label x="76.2" y="8.382" size="1.778" layer="95" rot="R180"/>
 <pinref part="RESET_SWITCH" gate="G$1" pin="2"/>
-<wire x1="111.76" y1="48.26" x2="86.36" y2="48.26" width="0.1524" layer="91"/>
-<junction x="86.36" y="48.26"/>
-<label x="116.84" y="48.26" size="1.778" layer="95"/>
+<wire x1="106.68" y1="5.08" x2="106.68" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="7.62" x2="106.68" y2="7.62" width="0.1524" layer="91"/>
+<junction x="106.68" y="7.62"/>
+<label x="127" y="7.62" size="1.778" layer="95"/>
+<junction x="106.68" y="5.08"/>
 </segment>
 <segment>
 <pinref part="LCD" gate="A" pin="2"/>
-<wire x1="25.4" y1="45.72" x2="38.1" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="38.1" y1="45.72" x2="38.1" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-7.62" x2="5.08" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="-10.16" width="0.1524" layer="91"/>
 <pinref part="SUPPLY10" gate="GND" pin="GND"/>
-<label x="20.32" y="45.72" size="1.778" layer="95" rot="R180"/>
+<label x="33.02" y="-8.636" size="1.778" layer="95"/>
 </segment>
 <segment>
-<wire x1="78.74" y1="10.16" x2="78.74" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="15.24" x2="73.66" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-55.88" x2="2.54" y2="-55.88" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="-55.88" x2="2.54" y2="-60.96" width="0.1524" layer="91"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
-<junction x="78.74" y="15.24"/>
+<junction x="2.54" y="-55.88"/>
 <pinref part="R3" gate="G$1" pin="2"/>
-<wire x1="81.28" y1="10.16" x2="78.74" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="15.24" x2="78.74" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-53.34" x2="7.62" y2="-55.88" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="2"/>
-<wire x1="81.28" y1="17.78" x2="78.74" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="-53.34" x2="-2.54" y2="-55.88" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="-55.88" x2="2.54" y2="-55.88" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SENSOR" gate="A" pin="2"/>
-<wire x1="25.4" y1="-2.54" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="-2.54" x2="40.64" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="25.4" x2="12.7" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="25.4" x2="12.7" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<label x="12.7" y="-2.54" size="1.778" layer="95"/>
+<label x="33.02" y="24.638" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="VCC" class="0">
 <segment>
 <pinref part="IC1" gate="A1" pin="VI"/>
 <pinref part="POWER" gate="G$1" pin="2"/>
-<wire x1="40.64" y1="76.2" x2="25.4" y2="76.2" width="0.1524" layer="91"/>
-<label x="15.24" y="76.2" size="1.778" layer="95"/>
+<wire x1="111.76" y1="-22.86" x2="121.92" y2="-22.86" width="0.1524" layer="91"/>
+<label x="127" y="-22.86" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -3135,132 +3135,132 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="IC1" gate="A1" pin="ADJ"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="63.5" y1="63.5" x2="63.5" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="63.5" y1="60.96" x2="63.5" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="68.58" x2="50.8" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="60.96" x2="63.5" y2="60.96" width="0.1524" layer="91"/>
-<junction x="63.5" y="60.96"/>
+<wire x1="88.9" y1="-35.56" x2="88.9" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="-38.1" x2="101.6" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="-38.1" x2="106.68" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-38.1" x2="106.68" y2="-40.64" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="-30.48" x2="101.6" y2="-38.1" width="0.1524" layer="91"/>
+<junction x="101.6" y="-38.1"/>
 </segment>
 </net>
 <net name="SW_A" class="0">
 <segment>
-<wire x1="93.98" y1="10.16" x2="111.76" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="-40.64" x2="27.94" y2="-40.64" width="0.1524" layer="91"/>
 <pinref part="SWITCHES" gate="A" pin="1"/>
-<wire x1="71.12" y1="2.54" x2="71.12" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="-25.4" x2="58.42" y2="-25.4" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="2.54" x2="93.98" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="2.54" x2="93.98" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="-71.12" x2="12.7" y2="-40.64" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="91.44" y1="10.16" x2="93.98" y2="10.16" width="0.1524" layer="91"/>
-<junction x="93.98" y="10.16"/>
+<wire x1="7.62" y1="-43.18" x2="7.62" y2="-40.64" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-40.64" x2="12.7" y2="-40.64" width="0.1524" layer="91"/>
+<junction x="12.7" y="-40.64"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="1"/>
-<wire x1="58.42" y1="-25.4" x2="58.42" y2="-35.56" width="0.1524" layer="91"/>
-<label x="116.84" y="10.16" size="1.778" layer="95"/>
-<label x="58.42" y="-48.26" size="1.778" layer="95" rot="R90"/>
+<wire x1="12.7" y1="-71.12" x2="-33.02" y2="-71.12" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="-71.12" x2="-33.02" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="-30.48" x2="-43.18" y2="-30.48" width="0.1524" layer="91"/>
+<label x="33.02" y="-41.656" size="1.778" layer="95"/>
+<label x="-48.26" y="-30.48" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="SW_B" class="0">
 <segment>
-<wire x1="68.58" y1="25.4" x2="68.58" y2="-22.86" width="0.1524" layer="91"/>
-<wire x1="68.58" y1="-22.86" x2="55.88" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="SWITCHES" gate="A" pin="2"/>
-<wire x1="93.98" y1="17.78" x2="93.98" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="12.7" x2="111.76" y2="12.7" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="17.78" x2="93.98" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="25.4" x2="68.58" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="-38.1" x2="27.94" y2="-38.1" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="91.44" y1="17.78" x2="93.98" y2="17.78" width="0.1524" layer="91"/>
-<junction x="93.98" y="17.78"/>
+<wire x1="-2.54" y1="-43.18" x2="-2.54" y2="-38.1" width="0.1524" layer="91"/>
+<junction x="-2.54" y="-38.1"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="2"/>
-<wire x1="55.88" y1="-22.86" x2="55.88" y2="-35.56" width="0.1524" layer="91"/>
-<label x="116.84" y="12.7" size="1.778" layer="95"/>
-<label x="55.88" y="-48.26" size="1.778" layer="95" rot="R90"/>
+<wire x1="-2.54" y1="-38.1" x2="-30.48" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="-30.48" y1="-38.1" x2="-30.48" y2="-27.94" width="0.1524" layer="91"/>
+<wire x1="-30.48" y1="-27.94" x2="-43.18" y2="-27.94" width="0.1524" layer="91"/>
+<label x="33.02" y="-38.862" size="1.778" layer="95"/>
+<label x="-48.26" y="-27.94" size="1.778" layer="95" rot="R180"/>
 </segment>
 </net>
 <net name="+5V" class="0">
 <segment>
 <pinref part="ARDUINO_POWER" gate="A" pin="4"/>
-<wire x1="111.76" y1="68.58" x2="99.06" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="10.16" x2="106.68" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="10.16" x2="106.68" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="SUPPLY7" gate="+5V" pin="+5V"/>
-<label x="116.84" y="67.818" size="1.778" layer="95"/>
+<label x="76.2" y="10.922" size="1.778" layer="95" rot="R180"/>
 <pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="99.06" y1="68.58" x2="96.52" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="63.5" x2="99.06" y2="68.58" width="0.1524" layer="91"/>
-<junction x="99.06" y="68.58"/>
+<wire x1="106.68" y1="12.7" x2="106.68" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="15.24" x2="99.06" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="12.7" x2="106.68" y2="12.7" width="0.1524" layer="91"/>
+<junction x="106.68" y="12.7"/>
 </segment>
 <segment>
 <pinref part="SENSOR" gate="A" pin="1"/>
-<wire x1="25.4" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="0" x2="40.64" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="27.94" x2="12.7" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="27.94" x2="12.7" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="SUPPLY6" gate="+5V" pin="+5V"/>
-<label x="12.7" y="0" size="1.778" layer="95"/>
+<label x="33.02" y="27.178" size="1.778" layer="95"/>
 <pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="45.72" y1="-15.24" x2="48.26" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="-15.24" x2="48.26" y2="0" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
-<junction x="40.64" y="0"/>
+<wire x1="10.16" y1="27.94" x2="12.7" y2="27.94" width="0.1524" layer="91"/>
+<junction x="12.7" y="27.94"/>
 </segment>
 <segment>
 <pinref part="SUPPLY8" gate="+5V" pin="+5V"/>
-<wire x1="101.6" y1="22.86" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="SWITCHES" gate="A" pin="3"/>
-<wire x1="101.6" y1="15.24" x2="111.76" y2="15.24" width="0.1524" layer="91"/>
-<label x="116.84" y="15.24" size="1.778" layer="95"/>
+<wire x1="17.78" y1="-33.02" x2="17.78" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="-35.56" x2="27.94" y2="-35.56" width="0.1524" layer="91"/>
+<label x="33.02" y="-36.322" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RESET" class="0">
 <segment>
 <pinref part="ARDUINO_POWER" gate="A" pin="6"/>
-<wire x1="111.76" y1="63.5" x2="104.14" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="104.14" y1="63.5" x2="104.14" y2="50.8" width="0.1524" layer="91"/>
-<label x="116.84" y="62.738" size="1.778" layer="95"/>
-<wire x1="104.14" y1="50.8" x2="111.76" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="15.24" x2="88.9" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="15.24" x2="88.9" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="27.94" x2="99.06" y2="27.94" width="0.1524" layer="91"/>
+<label x="76.2" y="16.002" size="1.778" layer="95" rot="R180"/>
 <pinref part="R5" gate="G$1" pin="1"/>
-<wire x1="99.06" y1="53.34" x2="99.06" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="50.8" x2="104.14" y2="50.8" width="0.1524" layer="91"/>
-<junction x="104.14" y="50.8"/>
+<wire x1="99.06" y1="27.94" x2="114.3" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="27.94" x2="114.3" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="10.16" x2="121.92" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="25.4" x2="99.06" y2="27.94" width="0.1524" layer="91"/>
+<junction x="99.06" y="27.94"/>
 <pinref part="RESET_SWITCH" gate="G$1" pin="1"/>
-<label x="116.84" y="50.8" size="1.778" layer="95"/>
+<label x="127" y="10.16" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="LCD_RX" class="0">
 <segment>
 <pinref part="LCD" gate="A" pin="4"/>
-<wire x1="25.4" y1="40.64" x2="30.48" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="40.64" x2="30.48" y2="30.48" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="30.48" x2="50.8" y2="30.48" width="0.1524" layer="91"/>
-<label x="20.32" y="40.64" size="1.778" layer="95" rot="R180"/>
-<label x="50.8" y="-50.8" size="1.778" layer="95" rot="R90"/>
-<wire x1="50.8" y1="30.48" x2="50.8" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-2.54" x2="-33.02" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="-2.54" x2="-33.02" y2="-22.86" width="0.1524" layer="91"/>
+<label x="33.02" y="-3.302" size="1.778" layer="95"/>
+<label x="-48.26" y="-22.86" size="1.778" layer="95" rot="R180"/>
+<wire x1="-33.02" y1="-22.86" x2="-43.18" y2="-22.86" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="4"/>
 </segment>
 </net>
 <net name="LCD_TX" class="0">
 <segment>
 <pinref part="LCD" gate="A" pin="3"/>
-<wire x1="25.4" y1="43.18" x2="33.02" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="43.18" x2="33.02" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="33.02" x2="53.34" y2="33.02" width="0.1524" layer="91"/>
-<label x="20.32" y="43.18" size="1.778" layer="95" rot="R180"/>
-<label x="53.34" y="-50.8" size="1.778" layer="95" rot="R90"/>
-<wire x1="53.34" y1="33.02" x2="53.34" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="-5.08" x2="-30.48" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="-30.48" y1="-5.08" x2="-30.48" y2="-25.4" width="0.1524" layer="91"/>
+<label x="33.02" y="-5.842" size="1.778" layer="95"/>
+<label x="-48.26" y="-25.4" size="1.778" layer="95" rot="R180"/>
+<wire x1="-30.48" y1="-25.4" x2="-43.18" y2="-25.4" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="3"/>
 </segment>
 </net>
 <net name="HALL" class="0">
 <segment>
 <pinref part="SENSOR" gate="A" pin="3"/>
-<wire x1="25.4" y1="-5.08" x2="33.02" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-15.24" x2="33.02" y2="-20.32" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-20.32" x2="48.26" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="22.86" x2="17.78" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="22.86" x2="17.78" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="15.24" x2="-2.54" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="15.24" x2="-35.56" y2="15.24" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="5"/>
-<wire x1="48.26" y1="-20.32" x2="48.26" y2="-35.56" width="0.1524" layer="91"/>
-<label x="48.26" y="-48.26" size="1.778" layer="95" rot="R90"/>
-<wire x1="33.02" y1="-5.08" x2="33.02" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="15.24" x2="-35.56" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="-20.32" x2="-43.18" y2="-20.32" width="0.1524" layer="91"/>
+<label x="-48.26" y="-20.32" size="1.778" layer="95" rot="R180"/>
 <pinref part="R6" gate="G$1" pin="1"/>
-<wire x1="33.02" y1="-15.24" x2="35.56" y2="-15.24" width="0.1524" layer="91"/>
-<junction x="33.02" y="-15.24"/>
-<label x="12.7" y="-5.08" size="1.778" layer="95"/>
+<wire x1="-2.54" y1="15.24" x2="-2.54" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="-2.54" y1="27.94" x2="0" y2="27.94" width="0.1524" layer="91"/>
+<junction x="-2.54" y="15.24"/>
+<label x="33.02" y="22.098" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
