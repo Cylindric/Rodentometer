@@ -11,6 +11,7 @@ class GUI
     SerialGLCD _glcd;
     uint16_t _lastRevLog;
     uint16_t _revs[5];
+    uint16_t _deltas[5];
     uint8_t _revPtr;
     uint16_t _delta;
     uint8_t _topButtonState;
@@ -18,6 +19,8 @@ class GUI
     static const uint8_t BUTTON_X = 123;
     static const uint8_t TOP_BUTTON_Y = 15;
     static const uint8_t BOTTOM_BUTTON_Y = 50;
+    
+    uint8_t _peakRPM;
     
     void setupScreen();
 

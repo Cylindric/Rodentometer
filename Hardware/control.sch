@@ -3039,9 +3039,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="SUPPLY5" gate="GND" x="73.66" y="12.7"/>
 <instance part="RESET_SWITCH" gate="G$1" x="114.3" y="48.26"/>
 <instance part="SENSOR" gate="A" x="22.86" y="-2.54" rot="MR0"/>
-<instance part="SUPPLY4" gate="GND" x="48.26" y="-10.16" rot="MR0"/>
-<instance part="SUPPLY6" gate="+5V" x="33.02" y="5.08" rot="MR0"/>
-<instance part="R6" gate="G$1" x="40.64" y="-7.62"/>
+<instance part="SUPPLY4" gate="GND" x="40.64" y="-7.62" rot="MR0"/>
+<instance part="SUPPLY6" gate="+5V" x="40.64" y="5.08" rot="MR0"/>
+<instance part="R6" gate="G$1" x="40.64" y="-15.24"/>
 </instances>
 <busses>
 </busses>
@@ -3116,12 +3116,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 <segment>
 <pinref part="SENSOR" gate="A" pin="2"/>
-<wire x1="25.4" y1="-2.54" x2="48.26" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="-2.54" x2="48.26" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="-2.54" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="-2.54" x2="40.64" y2="-5.08" width="0.1524" layer="91"/>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<pinref part="R6" gate="G$1" pin="2"/>
-<wire x1="45.72" y1="-7.62" x2="48.26" y2="-7.62" width="0.1524" layer="91"/>
-<junction x="48.26" y="-7.62"/>
 <label x="12.7" y="-2.54" size="1.778" layer="95"/>
 </segment>
 </net>
@@ -3193,10 +3190,15 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 <segment>
 <pinref part="SENSOR" gate="A" pin="1"/>
-<wire x1="25.4" y1="0" x2="33.02" y2="0" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="0" x2="33.02" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="0" x2="40.64" y2="2.54" width="0.1524" layer="91"/>
 <pinref part="SUPPLY6" gate="+5V" pin="+5V"/>
 <label x="12.7" y="0" size="1.778" layer="95"/>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="45.72" y1="-15.24" x2="48.26" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="-15.24" x2="48.26" y2="0" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="0" x2="40.64" y2="0" width="0.1524" layer="91"/>
+<junction x="40.64" y="0"/>
 </segment>
 <segment>
 <pinref part="SUPPLY8" gate="+5V" pin="+5V"/>
@@ -3249,15 +3251,15 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <segment>
 <pinref part="SENSOR" gate="A" pin="3"/>
 <wire x1="25.4" y1="-5.08" x2="33.02" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-7.62" x2="33.02" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-17.78" x2="48.26" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-15.24" x2="33.02" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-20.32" x2="48.26" y2="-20.32" width="0.1524" layer="91"/>
 <pinref part="ARDUINO_DATA" gate="A" pin="5"/>
-<wire x1="48.26" y1="-17.78" x2="48.26" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="48.26" y1="-20.32" x2="48.26" y2="-35.56" width="0.1524" layer="91"/>
 <label x="48.26" y="-48.26" size="1.778" layer="95" rot="R90"/>
-<wire x1="33.02" y1="-5.08" x2="33.02" y2="-7.62" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-5.08" x2="33.02" y2="-15.24" width="0.1524" layer="91"/>
 <pinref part="R6" gate="G$1" pin="1"/>
-<wire x1="33.02" y1="-7.62" x2="35.56" y2="-7.62" width="0.1524" layer="91"/>
-<junction x="33.02" y="-7.62"/>
+<wire x1="33.02" y1="-15.24" x2="35.56" y2="-15.24" width="0.1524" layer="91"/>
+<junction x="33.02" y="-15.24"/>
 <label x="12.7" y="-5.08" size="1.778" layer="95"/>
 </segment>
 </net>
